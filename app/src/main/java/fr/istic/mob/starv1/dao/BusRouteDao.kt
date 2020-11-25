@@ -10,7 +10,7 @@ import fr.istic.mob.starv1.entity.BusRoute
 interface BusRouteDao {
 
     @Query("SELECT * FROM BusRoute")
-    fun getAll(): List<BusRoute>
+    fun getAll(): MutableList<BusRoute>
 
     @Insert
     fun insertAll(vararg busRoutes: BusRoute)

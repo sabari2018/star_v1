@@ -1,5 +1,11 @@
 package fr.istic.mob.starv1
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.system.Os.mkdir
@@ -7,6 +13,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.work.Constraints
@@ -24,18 +32,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import java.io.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
   //  val data_source:String ="https://data.explore.star.fr/explore/dataset/tco-busmetro-horaires-gtfs-versions-td/download/?format=json&timezone=Europe/Berlin&lang=fr"
     var permission:Permission = Permission(this)
+    private val CHANNEL_ID = "Star_v1"
+    private val notificationId = 10
+    private val filesNames = arrayOf("trips.txt","stop_times.txt","stops.txt","routes.txt","calendar.txt")
+    var exportPath:String =""
 
     val workManager = WorkManager.getInstance()
 
@@ -45,13 +54,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //loadData()
         periodaticworkmanager.setOnClickListener(this@MainActivity)
 
+
     }
 
     override fun onClick(v: View) {
 
         when (v.id) {
             R.id.periodaticworkmanager -> {
-                Toast.makeText(this@MainActivity, "ICI C'EST PARIS", Toast.LENGTH_SHORT).show()
+               // showNotification(this)
+
                 loadData()
                 /*permission.requestPermission(listOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                     object : Permission.PermissionCallback {
@@ -61,6 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         }
 
                         override fun onDenied() {
+
                             Toast.makeText(this@MainActivity, "storage permission dinied", Toast.LENGTH_SHORT).show()
                             //show message if not allow storage permission
                         }
@@ -74,8 +86,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         loaderShow(true)
         val periodicWorkRequest = PeriodicWorkRequest.Builder(
             DownloadJSON::class.java,
-            3L,
-            TimeUnit.SECONDS
+            15L,
+            TimeUnit.MINUTES
         ).setConstraints(
             Constraints.Builder()
                 .setRequiresCharging(true)
@@ -91,7 +103,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     if (it.state == WorkInfo.State.ENQUEUED) {
 
                         loaderShow(false)
-                        Toast.makeText(this@MainActivity, "Telechargement termie !", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, "Telechargement termine !", Toast.LENGTH_SHORT).show()
                     }
                 }
             })
@@ -119,18 +131,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
              ) {
                  try {
                      var record:JSONArray? = response
-                     //var js:JSONObject = response!!.optJSONObject(0).getJSONObject("fields")
-                    // var url:String = js.getString("url")
-                     var obj = JSONObject()
-                     for (i in 0 until record!!.length()){
-                          obj = record.getJSONObject(i).getJSONObject("fields")
-                         if (checkNewFileByDate(obj.get("debutvalidite").toString(), obj.get("finvalidite").toString())){
-                             Log.e("LE BON FICHIER", obj.getString("id"))
-                             break
-                         }
-                     }
-                     Log.e("SAD", obj.get("id").toString())
-                    // unzipFileFromUrl(url)
+                     var js:JSONObject = response!!.optJSONObject(0).getJSONObject("fields")
+                     var url:String = js.getString("url")
+
+                     unzipFileFromUrl(url)
 
                  }catch (e:JSONException){e.printStackTrace()}
              }
@@ -151,24 +155,29 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
              override fun onSuccess(statusCode: Int, headers: Array<out Header>?, binaryData: ByteArray?) {
                  try {
-                     var name:String = url.substring(url.lastIndexOf("/")+1,url.length)
-                     var folder:String ="starv1/"
-                     var dirFile:File = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),folder)
+                     val name:String = url.substring(url.lastIndexOf("/")+1,url.length)
+                     val folder ="starv1/"
+                     val dirFile = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),folder)
                      if(!dirFile.exists()){
                          mkdir(dirFile.absolutePath,0)
                      }
 
-                     var file = File(dirFile,name)
-                     var stream = FileOutputStream(file)
+                     val file = File(dirFile,name)
+                     val stream = FileOutputStream(file)
                      stream.write(binaryData)
                      stream.close()
 
-                     /*var exportPath:String = file.absolutePath
+                     exportPath = file.absolutePath
                      exportPath = exportPath.replace(".zip","")
                      exportPath = "$exportPath/"
 
                      var dzip = Decompress(file.absolutePath, exportPath)
-                     dzip.unzip()*/
+                     dzip.unzip()
+
+
+
+
+                     filesToDatabase(exportPath)
 
 
                     // dismissDialog(0)
@@ -211,6 +220,61 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             StarDatabase::class.java,"star_db"
         ).build()
 
+
+    }
+
+    private fun showNotification(context: Context) {
+        createNotificationChannel(context)
+        val pendingIntent: PendingIntent = PendingIntent.getService(
+            context, 0, Intent(context, DownloadService::class.java),
+            Intent.FILL_IN_DATA
+        )
+        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setContentTitle("Star_v1")
+            .setContentText("Click notification to download database")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+        with(NotificationManagerCompat.from(context)) {
+            notify(notificationId, builder.build())
+        }
+    }
+
+    private fun createNotificationChannel(context: Context) {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Star_v1"
+            val descriptionText = "Click notification to download database"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun filesToDatabase(directory:String){
+
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+        val file = File(storageDir,filesNames[0])
+
+        val bReader = BufferedReader(FileReader(file))
+
+        var line = bReader.readLine();
+        while (line !=null){
+
+        }
+
+
+       /* val bufferedReader: BufferedReader = File("example.txt").bufferedReader()
+        val inputString = bufferedReader.use { it.readText() }*/
+
+        //"trips.txt","stop_times.txt","stops.txt","routes.txt","calendar.txt"
 
     }
 }

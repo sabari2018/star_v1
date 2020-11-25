@@ -4,16 +4,17 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import fr.istic.mob.starv1.entity.StopTime
 
 @Dao
 interface StopTimeDao {
 
-    @Query("SELECT * FROM stoptime")
-    fun getAll(): List<StopTimeDao>
+    @Query("SELECT * FROM StopTime")
+    fun getAll(): MutableList<StopTime>
 
     @Insert
-    fun insertAll(vararg stopTimes: StopTimeDao)
+    fun insertAll(vararg stopTimes: StopTime)
 
     @Delete
-    fun delete(stopTime: StopTimeDao)
+    fun delete(stopTime: StopTime)
 }
