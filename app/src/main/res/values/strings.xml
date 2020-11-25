@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">starv1</string>
+    <string name="description">Service star V1, consulte le site de Star pour voir s\'il y\'a un nouveau json</string>
+    <string name="download_runing">Telechargement en cours. . .</string>
+    <string name="download_work">Telechargement periodique</string>
+
+</resources>
