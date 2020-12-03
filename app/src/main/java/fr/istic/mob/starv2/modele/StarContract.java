@@ -1,4 +1,4 @@
-package fr.foursov.star2.sqlite;
+package fr.istic.mob.starv2.modele;
 
 import android.net.Uri;
 import android.provider.BaseColumns;
