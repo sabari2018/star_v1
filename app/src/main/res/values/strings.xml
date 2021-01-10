@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">StarV2</string>
+    <string name="Date">Date</string>
+    <string name="Heure">Heure</string>
+</resources>
