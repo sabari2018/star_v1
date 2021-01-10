@@ -180,16 +180,16 @@ public class FragmentOne extends Fragment {
 
     public void updatebus(BusRoute s) {
         mParam3 = s;
-        String[] direction = s.getLongName().split("<>", 2);
+        String[] direction = s.getRoute_long_name().split("<>", 2);
         direction1.setText(direction[0] + " VERS " + direction[1]);
         direction2.setText(direction[1] + " VERS " + direction[0]);
-        selectedBus.setText(s.getShortName());
-        selectedBus.setTextColor(Color.parseColor("#" + s.getTextColor()));
-        selectedBus.setBackgroundColor(Color.parseColor("#" + s.getColor()));
+        selectedBus.setText(s.getRoute_short_name());
+        selectedBus.setTextColor(Color.parseColor("#" + s.getRoute_text_color()));
+        selectedBus.setBackgroundColor(Color.parseColor("#" + s.getRoute_color()));
 
         args.putString(FragmentTwo.ARG_PARAM1, "" + mParam2);
         args.putString(FragmentTwo.ARG_PARAM2, "" + mParam1);
-        args.putString(FragmentTwo.ARG_PARAM3, "" + mParam3.getShortName());
+        args.putString(FragmentTwo.ARG_PARAM3, "" + mParam3.getRoute_short_name());
 
 
     }
@@ -222,18 +222,18 @@ public class FragmentOne extends Fragment {
 
     public Bundle goFrag2() {
         Log.d("XXXX", "okm+ hhj");
-        Log.e("XXXX", " .>" + args.getString(FragmentTwo.ARG_PARAM3) + " ---" + mParam3.getShortName());
-        String[] direction = mParam3.getLongName().split("<>", 2);
+        Log.e("XXXX", " .>" + args.getString(FragmentTwo.ARG_PARAM3) + " ---" + mParam3.getRoute_short_name());
+        String[] direction = mParam3.getRoute_long_name().split("<>", 2);
         int idbt = 0;
         if (!direction1.isChecked()) {
             idbt = 1;
         }
         ;
-        Log.e("XXXX", " .>" + idbt + " ---" + mParam3.getShortName());
+        Log.e("XXXX", " .>" + idbt + " ---" + mParam3.getRoute_short_name());
 
         args.putString(FragmentTwo.ARG_PARAM1, "" + mParam2);
         args.putString(FragmentTwo.ARG_PARAM2, "" + mParam1);
-        args.putString(FragmentTwo.ARG_PARAM3, "" + mParam3.getShortName());
+        args.putString(FragmentTwo.ARG_PARAM3, "" + mParam3.getRoute_short_name());
         args.putString(FragmentTwo.ARG_PARAM4, "" + direction[idbt]);
         args.putString(FragmentTwo.ARG_PARAM5, "" + mParam3.getRoute_id());
         args.putString(FragmentTwo.ARG_PARAM6, "" + idbt);

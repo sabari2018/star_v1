@@ -7,30 +7,30 @@ package fr.istic.mob.starv2.model;
 public class BusRoute {
 
     private String route_id;
-    private String shortName;
-    private String longName;
-    private String description;
-    private String type;
-    private String color;
-    private String textColor;
+    private String route_short_name;
+    private String route_long_name;
+    private String route_desc;
+    private String route_type;
+    private String route_color;
+    private String route_text_color;
 
     public BusRoute(String route_id, String shortName, String longName, String description, String type, String color, String textColor) {
         this.route_id = route_id;
-        this.shortName = shortName;
-        this.longName = longName;
-        this.description = description;
-        this.type = type;
-        this.color = color;
-        this.textColor = textColor;
+        this.route_short_name = shortName;
+        this.route_long_name = longName;
+        this.route_desc = description;
+        this.route_type = type;
+        this.route_color = color;
+        this.route_text_color = textColor;
     }
 
 
-    public String getShortName() {
-        return shortName;
+    public String getRoute_short_name() {
+        return route_short_name;
     }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
+    public void setRoute_short_name(String route_short_name) {
+        this.route_short_name = route_short_name;
     }
 
     public String getRoute_id() {
@@ -41,56 +41,56 @@ public class BusRoute {
         this.route_id = route_id;
     }
 
-    public String getLongName() {
-        return longName;
+    public String getRoute_long_name() {
+        return route_long_name;
     }
 
-    public void setLongName(String longName) {
-        this.longName = longName;
+    public void setRoute_long_name(String route_long_name) {
+        this.route_long_name = route_long_name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getRoute_desc() {
+        return route_desc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setRoute_desc(String route_desc) {
+        this.route_desc = route_desc;
     }
 
-    public String getType() {
-        return type;
+    public String getRoute_type() {
+        return route_type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRoute_type(String route_type) {
+        this.route_type = route_type;
     }
 
-    public String getColor() {
-        return color;
+    public String getRoute_color() {
+        return route_color;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setRoute_color(String route_color) {
+        this.route_color = route_color;
     }
 
-    public String getTextColor() {
-        return textColor;
+    public String getRoute_text_color() {
+        return route_text_color;
     }
 
-    public void setTextColor(String textColor) {
-        this.textColor = textColor;
+    public void setRoute_text_color(String route_text_color) {
+        this.route_text_color = route_text_color;
     }
 
     @Override
     public String toString() {
         return "BusRoute{" +
                 "route_id:'" + route_id + '\'' +
-                ", shortName:'" + shortName + '\'' +
-                ", longName:'" + longName + '\'' +
-                ", description:'" + description + '\'' +
-                ", type:'" + type + '\'' +
-                ", color:'" + color + '\'' +
-                ", textColor:'" + textColor + '\'' +
+                ", shortName:'" + route_short_name + '\'' +
+                ", longName:'" + route_long_name + '\'' +
+                ", description:'" + route_desc + '\'' +
+                ", type:'" + route_type + '\'' +
+                ", color:'" + route_color + '\'' +
+                ", textColor:'" + route_text_color + '\'' +
                 '}';
     }
 

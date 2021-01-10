@@ -86,9 +86,9 @@ public class BusSpinnerArrayAdapter extends ArrayAdapter<BusRoute> {
 
         busData = busLists.get(position);
 
-        name.setText(busData.getShortName());
-        name.setTextColor(Color.parseColor("#"+busData.getTextColor())) ;
-        imageback.setBackgroundColor(Color.parseColor("#"+busData.getColor()));
+        name.setText(busData.getRoute_short_name());
+        name.setTextColor(Color.parseColor("#"+busData.getRoute_text_color())) ;
+        imageback.setBackgroundColor(Color.parseColor("#"+busData.getRoute_color()));
 
         return view;
     }

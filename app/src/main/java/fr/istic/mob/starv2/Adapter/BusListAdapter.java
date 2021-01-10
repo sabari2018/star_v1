@@ -43,9 +43,9 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
         BusRoute busRoute = getItem(position);
 
-        viewHolder.name.setText(busRoute.getShortName());
-        viewHolder.name.setTextColor(Color.parseColor("#"+busRoute.getTextColor())) ;
-        viewHolder.back.setBackgroundColor(Color.parseColor("#"+busRoute.getColor()));
+        viewHolder.name.setText(busRoute.getRoute_short_name());
+        viewHolder.name.setTextColor(Color.parseColor("#"+busRoute.getRoute_text_color())) ;
+        viewHolder.back.setBackgroundColor(Color.parseColor("#"+busRoute.getRoute_color()));
 
         return convertView;
         }

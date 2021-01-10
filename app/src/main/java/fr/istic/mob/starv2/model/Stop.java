@@ -7,19 +7,19 @@ package fr.istic.mob.starv2.model;
 public class Stop {
 
     private String stop_id;
-    private String name;
-    private String description;
-    private float latitude;
-    private float longitude;
-    private String wheelChairBoalding;
+    private String stop_name;
+    private String stop_desc;
+    private float stop_lat;
+    private float stop_lon;
+    private String wheelchair_boarding;
 
     public Stop(String stop_id, String name, String description, float latitude, float longitude, String wheelChairBoalding) {
         this.stop_id = stop_id;
-        this.name = name;
-        this.description = description;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.wheelChairBoalding = wheelChairBoalding;
+        this.stop_name = name;
+        this.stop_desc = description;
+        this.stop_lat = latitude;
+        this.stop_lon = longitude;
+        this.wheelchair_boarding = wheelChairBoalding;
     }
 
 
@@ -31,55 +31,55 @@ public class Stop {
         this.stop_id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getStop_name() {
+        return stop_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStop_name(String stop_name) {
+        this.stop_name = stop_name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getStop_desc() {
+        return stop_desc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setStop_desc(String stop_desc) {
+        this.stop_desc = stop_desc;
     }
 
-    public float getLatitude() {
-        return latitude;
+    public float getStop_lat() {
+        return stop_lat;
     }
 
-    public void setLatitude(float latitude) {
-        this.latitude = latitude;
+    public void setStop_lat(float stop_lat) {
+        this.stop_lat = stop_lat;
     }
 
-    public float getLongitude() {
-        return longitude;
+    public float getStop_lon() {
+        return stop_lon;
     }
 
-    public void setLongitude(float longitude) {
-        this.longitude = longitude;
+    public void setStop_lon(float stop_lon) {
+        this.stop_lon = stop_lon;
     }
 
-    public String getWheelChairBoalding() {
-        return wheelChairBoalding;
+    public String getWheelchair_boarding() {
+        return wheelchair_boarding;
     }
 
-    public void setWheelChairBoalding(String wheelChairBoalding) {
-        this.wheelChairBoalding = wheelChairBoalding;
+    public void setWheelchair_boarding(String wheelchair_boarding) {
+        this.wheelchair_boarding = wheelchair_boarding;
     }
 
     @Override
     public String toString() {
         return "Stop{" +
                 "id:'" + stop_id + '\'' +
-                ", name:'" + name + '\'' +
-                ", description:'" + description + '\'' +
-                ", latitude:" + latitude +
-                ", longitude:" + longitude +
-                ", wheelChairBoalding:'" + wheelChairBoalding + '\'' +
+                ", name:'" + stop_name + '\'' +
+                ", description:'" + stop_desc + '\'' +
+                ", latitude:" + stop_lat +
+                ", longitude:" + stop_lon +
+                ", wheelChairBoalding:'" + wheelchair_boarding + '\'' +
                 '}';
     }
 

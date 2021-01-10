@@ -111,7 +111,7 @@ public class FragmentTwo extends Fragment {
 
         ArrayList<String> values = new ArrayList<>();
         for (Stop stop: getArret(mParam5,mParam6)){
-            values.add(stop.getName());
+            values.add(stop.getStop_name());
         }
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(),R.layout.arretlayout, values);
 

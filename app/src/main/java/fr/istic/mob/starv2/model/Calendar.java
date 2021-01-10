@@ -14,8 +14,8 @@ public class Calendar {
     private String friday;
     private String saturday;
     private String sunday;
-    private String startDate;
-    private String endDate;
+    private String end_date;
+    private String start_date;
 
     public Calendar(String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday, String startDate, String endDate) {
         this.monday = monday;
@@ -25,8 +25,8 @@ public class Calendar {
         this.friday = friday;
         this.saturday = saturday;
         this.sunday = sunday;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.end_date = startDate;
+        this.start_date = endDate;
     }
 
     public String getMonday() {
@@ -85,20 +85,20 @@ public class Calendar {
         this.sunday = sunday;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getEnd_date() {
+        return end_date;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getStart_date() {
+        return start_date;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
     }
 
     @Override
@@ -111,8 +111,8 @@ public class Calendar {
                 ", friday='" + friday + '\'' +
                 ", saturday='" + saturday + '\'' +
                 ", sunday='" + sunday + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
+                ", startDate='" + end_date + '\'' +
+                ", endDate='" + start_date + '\'' +
                 '}';
     }
 

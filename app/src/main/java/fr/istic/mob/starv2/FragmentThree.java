@@ -107,7 +107,7 @@ public class FragmentThree extends Fragment {
         try {
             for (StopTime timesp: gethoraire(""+mParam6,""+mParam5,""+MainActivity.dateFormat(mParam1),""+MainActivity.HeurFormat(mParam2)))
             {
-                values.add(timesp.getArrivalTime());
+                values.add(timesp.getArrival_time());
             }
         }catch (Exception e){
         }
@@ -122,8 +122,8 @@ public class FragmentThree extends Fragment {
                 agrsone.putString(FragmentThree.ARG_PARAM1, ""+mParam1);
                 agrsone.putString(FragmentThree.ARG_PARAM2, ""+mParam2);
                 agrsone.putString(FragmentThree.ARG_PARAM3, ""+mParam3);
-                agrsone.putString(FragmentThree.ARG_PARAM4, ""+stopTimes.get(i).getTripId());
-                agrsone.putString(FragmentThree.ARG_PARAM5, ""+stopTimes.get(i).getArrivalTime());
+                agrsone.putString(FragmentThree.ARG_PARAM4, ""+stopTimes.get(i).getTrip_id());
+                agrsone.putString(FragmentThree.ARG_PARAM5, ""+stopTimes.get(i).getArrival_time());
                 agrsone.putString(FragmentThree.ARG_PARAM6, ""+mParam4);
 
                 Log.e("XXXX"," -> " + agrsone.toString())  ;
