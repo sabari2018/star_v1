@@ -13,7 +13,7 @@ interface StopDao {
     fun getAll(): MutableList<Stop>
 
     @Insert
-    fun insertAll(vararg stops: Stop)
+    fun insert(stops: Stop)
 
     @Delete
     fun delete(stop: Stop)

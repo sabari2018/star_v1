@@ -13,7 +13,7 @@ interface BusRouteDao {
     fun getAll(): MutableList<BusRoute>
 
     @Insert
-    fun insertAll(vararg busRoutes: BusRoute)
+    fun insert(busRoutes: BusRoute)
 
     @Delete
     fun delete(busRoute: BusRoute)

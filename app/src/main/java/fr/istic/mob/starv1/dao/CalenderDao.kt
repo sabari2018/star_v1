@@ -13,7 +13,7 @@ interface CalenderDao {
     fun getAll(): MutableList<Calender>
 
     @Insert
-    fun insertAll(vararg calenders: Calender)
+    fun insert(calender: Calender)
 
     @Delete
     fun delete(calender: Calender)

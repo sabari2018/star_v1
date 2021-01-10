@@ -1,9 +1,6 @@
 package fr.istic.mob.starv1.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import fr.istic.mob.starv1.entity.Calender
 import fr.istic.mob.starv1.entity.Trip
 
@@ -12,8 +9,8 @@ interface TripDao {
     @Query("SELECT * FROM Trip")
     fun getAll(): MutableList<Calender>
 
-    @Insert
-    fun insertAll(vararg trips: Trip)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(trips: Trip): Long
 
     @Delete
     fun delete(trip: Trip)

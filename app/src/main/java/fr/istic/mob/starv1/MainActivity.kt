@@ -17,10 +17,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.Observer
 import androidx.room.Room
-import androidx.work.Constraints
-import androidx.work.PeriodicWorkRequest
-import androidx.work.WorkInfo
-import androidx.work.WorkManager
+import androidx.work.*
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.BinaryHttpResponseHandler
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -63,7 +60,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.periodaticworkmanager -> {
                // showNotification(this)
 
-                loadData()
+                etape1()
+                //loadData()
                 /*permission.requestPermission(listOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                     object : Permission.PermissionCallback {
                         override fun onGranted() {
@@ -105,6 +103,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         loaderShow(false)
                         Toast.makeText(this@MainActivity, "Telechargement termine !", Toast.LENGTH_SHORT).show()
                     }
+                }
+            })
+    }
+
+    private fun etape1() {
+        loaderShow(true)
+
+        val constraints = androidx.work.Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+
+        val task = OneTimeWorkRequest.Builder(DownloadJSON::class.java).setConstraints(constraints).build()
+        workManager.enqueue(task)
+
+        workManager.getWorkInfoByIdLiveData(task.id)
+            .observe(this@MainActivity, Observer {
+                it?.let {
+
+                    if (it.state == WorkInfo.State.RUNNING) {
+                        loaderShow(true)
+
+                    }else
+                        if (it.state.isFinished) {
+
+                            Toast.makeText(this@MainActivity, "Done!!!", Toast.LENGTH_SHORT).show()
+                            loaderShow(false)
+                        }
                 }
             })
     }
