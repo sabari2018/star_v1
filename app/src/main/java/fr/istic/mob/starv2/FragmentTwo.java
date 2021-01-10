@@ -167,11 +167,11 @@ public class FragmentTwo extends Fragment {
         String[] selargs = {idBus, direnctionss};
         cursorone = mListener.managedQuery(stopsUri,
                 null, null, selargs,
-                StarContract.Stops.StopColumns.STOP_ID);
+                null);
         if (cursorone.moveToFirst()) {
             do {
                 Stop item = new Stop(
-                        cursorone.getString(cursorone.getColumnIndex(StarContract.Stops.StopColumns.STOP_ID)),
+                        "",
                         cursorone.getString(cursorone.getColumnIndex(StarContract.Stops.StopColumns.NAME)),
                         cursorone.getString(cursorone.getColumnIndex(StarContract.Stops.StopColumns.DESCRIPTION)),
                         cursorone.getFloat(cursorone.getColumnIndex(StarContract.Stops.StopColumns.LATITUDE)),
@@ -181,7 +181,7 @@ public class FragmentTwo extends Fragment {
 
                 );
                 stops.add(item);
-                idtrips.add(cursorone.getString(cursorone.getColumnIndex(StarContract.Trips.TripColumns.TRIP_ID))) ;
+                idtrips.add(cursorone.getString(cursorone.getColumnIndex(StarContract.Trips.TripColumns.ROUTE_ID))) ;
             } while (cursorone.moveToNext());
         }
         return  stops ;

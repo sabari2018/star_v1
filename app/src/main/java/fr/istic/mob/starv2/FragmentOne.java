@@ -195,14 +195,13 @@ public class FragmentOne extends Fragment {
     public static List<BusRoute> getBusRoute() {
 
         Cursor cursor = mListener.getContentResolver().query(Uri.withAppendedPath(StarContract.AUTHORITY_URI, StarContract.BusRoutes.CONTENT_PATH),
-                null, null, null,
-                StarContract.BusRoutes.BusRouteColumns.ROUTE_ID);
+                null, null, null,null);
         List<BusRoute> busRoutes = new ArrayList<>();
         int i = 0;
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 BusRoute item = new BusRoute(
-                        cursor.getString(cursor.getColumnIndex(StarContract.BusRoutes.BusRouteColumns.ROUTE_ID)),
+                        "",
                         cursor.getString(cursor.getColumnIndex(StarContract.BusRoutes.BusRouteColumns.SHORT_NAME)),
                         cursor.getString(cursor.getColumnIndex(StarContract.BusRoutes.BusRouteColumns.LONG_NAME)),
                         cursor.getString(cursor.getColumnIndex(StarContract.BusRoutes.BusRouteColumns.DESCRIPTION)),

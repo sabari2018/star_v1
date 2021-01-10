@@ -140,13 +140,13 @@ public class MainActivity extends FragmentActivity implements DeptListener{
 
         Cursor cursor = getContentResolver().query(StarContract.BusRoutes.CONTENT_URI,
                 null, null, null,
-                StarContract.BusRoutes.BusRouteColumns.ROUTE_ID);
+                null);
         List<BusRoute> busRoutes = new ArrayList<>();
         int i = 0;
         if (cursor.moveToFirst()) {
             do {
                 BusRoute item = new BusRoute(
-                        cursor.getString(cursor.getColumnIndex(StarContract.BusRoutes.BusRouteColumns.ROUTE_ID)),
+                        "",
                         cursor.getString(cursor.getColumnIndex(StarContract.BusRoutes.BusRouteColumns.SHORT_NAME)),
                         cursor.getString(cursor.getColumnIndex(StarContract.BusRoutes.BusRouteColumns.LONG_NAME)),
                         cursor.getString(cursor.getColumnIndex(StarContract.BusRoutes.BusRouteColumns.DESCRIPTION)),
