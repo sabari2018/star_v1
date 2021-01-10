@@ -51,17 +51,8 @@ public class FragmentThree extends Fragment {
     List<StopTime> stopTimes = new ArrayList<>();
 
     public FragmentThree() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentThree.
-     */
     public static FragmentThree newInstance(String param1, String param2) {
         FragmentThree fragment = new FragmentThree();
         Bundle args = new Bundle();
@@ -125,8 +116,6 @@ public class FragmentThree extends Fragment {
                 agrsone.putString(FragmentThree.ARG_PARAM4, ""+stopTimes.get(i).getTrip_id());
                 agrsone.putString(FragmentThree.ARG_PARAM5, ""+stopTimes.get(i).getArrival_time());
                 agrsone.putString(FragmentThree.ARG_PARAM6, ""+mParam4);
-
-                Log.e("XXXX"," -> " + agrsone.toString())  ;
                 mListener.switchFrag(agrsone,4);
 
 
@@ -141,10 +130,6 @@ public class FragmentThree extends Fragment {
 
             }
         });
-
-
-
-        // Inflate the layout for this fragment
         return view;
     }
 
@@ -175,7 +160,6 @@ public class FragmentThree extends Fragment {
 
 
         String[] selargs = {arretId, busId, date,heure};
-        Log.d("STARXTEST", "cursocount ..." + selargs[0] +" - "+ selargs[1] +" - "+ selargs[2] +" - "+ selargs[3] +" - " );
         Cursor cursor;
         try {
             cursor = mListener.getContentResolver().query(Uri.withAppendedPath(StarContract.AUTHORITY_URI, StarContract.StopTimes.CONTENT_PATH),
@@ -184,12 +168,8 @@ public class FragmentThree extends Fragment {
                     selargs,
                     StarContract.StopTimes.StopTimeColumns.ARRIVAL_TIME);
         }catch (Exception e){
-            Log.e("STARXTEST", "List<StopTime> null");
             return null;
         }
-
-
-        Log.d("STARXTEST", "cursocount ..." + cursor.getCount());
         if (cursor.moveToFirst()){
             do {
                 StopTime item = new StopTime(
@@ -199,7 +179,6 @@ public class FragmentThree extends Fragment {
                         cursor.getInt(cursor.getColumnIndex(StarContract.StopTimes.StopTimeColumns.STOP_ID)),
                         cursor.getString(cursor.getColumnIndex(StarContract.StopTimes.StopTimeColumns.STOP_SEQUENCE))
                 );
-                Log.d("STARXTEST", "from provider ..." + item);
                 stopTimes.add(item);
             } while (cursor.moveToNext());
         }

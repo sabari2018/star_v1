@@ -21,7 +21,6 @@ import fr.istic.mob.starv2.model.BusRoute;
 
 public class BusListAdapter extends ArrayAdapter<BusRoute> {
 
-//tweets est la liste des models à afficher
 public BusListAdapter(Context context, List<BusRoute> buss) {
         super(context, 0, buss);
         }

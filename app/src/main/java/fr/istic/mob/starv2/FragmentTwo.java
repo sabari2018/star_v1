@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,22 +53,12 @@ public class FragmentTwo extends Fragment {
 
    public static Bundle agrsone = new Bundle() ;
 
-
-
     private MainActivity mListener;
 
     public FragmentTwo() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentTwo.
-     */
     public static FragmentTwo newInstance(BusRoute param1, int param2) {
         FragmentTwo fragment = new FragmentTwo();
         Bundle args = new Bundle();
@@ -131,16 +120,9 @@ public class FragmentTwo extends Fragment {
                 agrsone.putString(FragmentThree.ARG_PARAM4, ""+adapter.getItem(i)); // arret
                 agrsone.putString(FragmentThree.ARG_PARAM5, ""+mParam5); // id route
                 agrsone.putString(FragmentThree.ARG_PARAM6, ""+stops.get(i).getId()); //  id trip
-
-                Log.e("XXXX"," ->  " + agrsone.toString())  ;
                 mListener.switchFrag(agrsone,3);
-
-
-
-
             }
         });
-        // Inflate the layout for this fragment
         return view;
 
     }
@@ -173,12 +155,7 @@ public class FragmentTwo extends Fragment {
         stops.clear();
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     */
+
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }

@@ -21,7 +21,6 @@ import fr.istic.mob.starv2.model.ArretTime;
 
 public class ArretListAdapter extends ArrayAdapter<ArretTime> {
 
-//tweets est la liste des models à afficher
 public ArretListAdapter(Context context, List<ArretTime> arretTimes) {
         super(context, 0, arretTimes);
         }

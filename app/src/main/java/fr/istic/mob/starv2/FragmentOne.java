@@ -80,7 +80,6 @@ public class FragmentOne extends Fragment {
     }
 
     public FragmentOne newInstance1(String param1) {
-        Log.d("XXXX", " passed" + param1 + " -*- " + mParam2);
         FragmentOne fragment = new FragmentOne();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -111,7 +110,6 @@ public class FragmentOne extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_one, container, false);
 
         onefragO = this.getActivity();
@@ -221,15 +219,12 @@ public class FragmentOne extends Fragment {
     }
 
     public Bundle goFrag2() {
-        Log.d("XXXX", "okm+ hhj");
-        Log.e("XXXX", " .>" + args.getString(FragmentTwo.ARG_PARAM3) + " ---" + mParam3.getRoute_short_name());
+
         String[] direction = mParam3.getRoute_long_name().split("<>", 2);
         int idbt = 0;
         if (!direction1.isChecked()) {
             idbt = 1;
         }
-        ;
-        Log.e("XXXX", " .>" + idbt + " ---" + mParam3.getRoute_short_name());
 
         args.putString(FragmentTwo.ARG_PARAM1, "" + mParam2);
         args.putString(FragmentTwo.ARG_PARAM2, "" + mParam1);
