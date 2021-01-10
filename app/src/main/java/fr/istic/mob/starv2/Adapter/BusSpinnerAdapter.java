@@ -23,7 +23,7 @@ import fr.istic.mob.starv2.model.BusRoute;
  * Sadou & Issa.
  */
 
-public class BusSpinnerArrayAdapter extends ArrayAdapter<BusRoute> {
+public class BusSpinnerAdapter extends ArrayAdapter<BusRoute> {
 
     private final LayoutInflater mInflater;
     private final Context mContext;
@@ -31,8 +31,8 @@ public class BusSpinnerArrayAdapter extends ArrayAdapter<BusRoute> {
     private final int mResource;
     BusRoute busData;
 
-    public BusSpinnerArrayAdapter(@NonNull Context context, @LayoutRes int resource,
-                                  @NonNull List busList) {
+    public BusSpinnerAdapter(@NonNull Context context, @LayoutRes int resource,
+                             @NonNull List busList) {
         super(context, resource, 0, busList);
 
         mContext = context;

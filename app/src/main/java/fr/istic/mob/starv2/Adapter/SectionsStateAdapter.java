@@ -13,12 +13,12 @@ import java.util.List;
  * Sadou & Issa.
  */
 
-public class SectionsStatePagerAdapter extends FragmentStatePagerAdapter {
+public class SectionsStateAdapter extends FragmentStatePagerAdapter {
 
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
 
-    public SectionsStatePagerAdapter(FragmentManager fm) {
+    public SectionsStateAdapter(FragmentManager fm) {
         super(fm);
     }
 

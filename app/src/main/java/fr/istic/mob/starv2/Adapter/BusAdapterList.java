@@ -19,9 +19,9 @@ import fr.istic.mob.starv2.model.BusRoute;
  * Sadou & Issa.
  */
 
-public class BusListAdapter extends ArrayAdapter<BusRoute> {
+public class BusAdapterList extends ArrayAdapter<BusRoute> {
 
-public BusListAdapter(Context context, List<BusRoute> buss) {
+public BusAdapterList(Context context, List<BusRoute> buss) {
         super(context, 0, buss);
         }
 

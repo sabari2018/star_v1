@@ -19,9 +19,9 @@ import fr.istic.mob.starv2.model.ArretTime;
  * Sadou & Issa.
  */
 
-public class ArretListAdapter extends ArrayAdapter<ArretTime> {
+public class ArretAdapterList extends ArrayAdapter<ArretTime> {
 
-public ArretListAdapter(Context context, List<ArretTime> arretTimes) {
+public ArretAdapterList(Context context, List<ArretTime> arretTimes) {
         super(context, 0, arretTimes);
         }
 

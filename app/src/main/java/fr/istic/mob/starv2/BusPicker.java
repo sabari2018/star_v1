@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
-import fr.istic.mob.starv2.Adapter.BusListAdapter;
+import fr.istic.mob.starv2.Adapter.BusAdapterList;
 
 
 /**
@@ -30,7 +30,7 @@ public class BusPicker extends DialogFragment {
         getDialog().setTitle("Bus List");
         myList = (ListView) rootView.findViewById(R.id.listViewbus) ;
 
-        final BusListAdapter adapter = new BusListAdapter(this.getContext(),   FragmentOne.getBusRoute() );
+        final BusAdapterList adapter = new BusAdapterList(this.getContext(),   FragmentOne.getBusRoute() );
         myList.setAdapter(adapter);
          onefragA =   this.getActivity();
 
